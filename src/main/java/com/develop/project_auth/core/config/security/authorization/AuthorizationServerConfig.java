@@ -50,11 +50,12 @@ public class AuthorizationServerConfig {
         .build();
   }
 
+  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   @Bean
   public RegisteredClientRepository registeredClientRepository(JdbcOperations jdbcOperations) {
     return new JdbcRegisteredClientRepository(jdbcOperations);
   }
-
+  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   @Bean
   public OAuth2AuthorizationService oAuth2AuthorizationService(JdbcOperations jdbcOperations,
       RegisteredClientRepository registeredClientRepository) {
@@ -84,8 +85,8 @@ public class AuthorizationServerConfig {
       UserRepository userRepository) {
     return context -> {
       Authentication authentication = context.getPrincipal();
-      if (authentication.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
-        org.springframework.security.core.userdetails.User userdetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+      if (authentication
+          .getPrincipal() instanceof org.springframework.security.core.userdetails.User userdetails) {
 
         User user = userRepository.findByEmail(userdetails.getUsername()).orElseThrow();
 

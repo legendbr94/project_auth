@@ -522,11 +522,11 @@
 						{
 							"name": "Alterar Senha",
 							"request": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"currentPassword\": \"123\",\n  \"newPassword\": \"1234\"\n}",
+									"raw": "{\n  \"email\": \"user@gmail.com\",\n  \"newPassword\": \"1234\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -534,7 +534,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/public/users/1/password",
+									"raw": "http://localhost:8080/public/users/recovery",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -543,8 +543,7 @@
 									"path": [
 										"public",
 										"users",
-										"1",
-										"password"
+										"recovery"
 									]
 								}
 							},

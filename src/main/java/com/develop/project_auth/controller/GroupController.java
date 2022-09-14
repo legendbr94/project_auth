@@ -1,10 +1,13 @@
 package com.develop.project_auth.controller;
 
+import com.develop.project_auth.core.util.Paths;
+import com.develop.project_auth.core.util.Tags;
 import com.develop.project_auth.domain.dto.GroupDTO;
 import com.develop.project_auth.domain.dto.input.GroupInputDTO;
 import com.develop.project_auth.domain.model.Group;
 import com.develop.project_auth.domain.repository.GroupRepository;
 import com.develop.project_auth.domain.service.GroupService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = Tags.GROUPS)
 @RestController
-@RequestMapping(path = "/groups")
+@RequestMapping(Paths.GROUPS)
 public class GroupController {
 
   private final GroupRepository groupRepository;
@@ -78,7 +82,7 @@ public class GroupController {
 
   private List<GroupDTO> toCollectionModel(Collection<Group> groups) {
     return groups.stream()
-        .map(group -> toModel(group))
+        .map(this::toModel)
         .collect(Collectors.toList());
   }
 

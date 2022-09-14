@@ -1,9 +1,12 @@
 package com.develop.project_auth.controller;
 
+import com.develop.project_auth.core.util.Paths;
+import com.develop.project_auth.core.util.Tags;
 import com.develop.project_auth.domain.dto.PermissionDTO;
 import com.develop.project_auth.domain.model.Group;
 import com.develop.project_auth.domain.model.Permission;
 import com.develop.project_auth.domain.service.GroupService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = Tags.GROUPS_PERMISSIONS)
 @RestController
-@RequestMapping(path = "/groups/{id}/permissions")
+@RequestMapping(Paths.GROUPS_PERMISSIONS)
 public class GroupPermissionController {
 
   private final GroupService groupService;
@@ -53,7 +57,7 @@ public class GroupPermissionController {
 
   private List<PermissionDTO> toCollectionModel(Collection<Permission> permissions) {
     return permissions.stream()
-        .map(permission -> toModel(permission))
+        .map(this::toModel)
         .collect(Collectors.toList());
   }
 }

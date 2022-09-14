@@ -1,5 +1,7 @@
 package com.develop.project_auth.controller;
 
+import com.develop.project_auth.core.util.Paths;
+import com.develop.project_auth.core.util.Tags;
 import com.develop.project_auth.domain.dto.UserDTO;
 import com.develop.project_auth.domain.dto.input.PasswordInputDTO;
 import com.develop.project_auth.domain.dto.input.UserInputDTO;
@@ -7,6 +9,7 @@ import com.develop.project_auth.domain.dto.input.UserWithPasswordInputDTO;
 import com.develop.project_auth.domain.model.User;
 import com.develop.project_auth.domain.repository.UserRepository;
 import com.develop.project_auth.domain.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = Tags.USERS)
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(Paths.USERS)
 public class UserController {
 
   private final UserRepository userRepository;
